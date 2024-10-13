@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TargetScript : MonoBehaviour
 {
     public int pointValue;
@@ -17,10 +18,13 @@ public class TargetScript : MonoBehaviour
     void Start()
     {
         targetRB = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         targetRB.AddForce(Vector3.up * Random.Range(minSpeed,maxSpeed), ForceMode.Impulse);
         targetRB.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+
         transform.position = RandomSpawnPos();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>(); 
+ 
     }
 
     // Update is called once per frame
@@ -31,14 +35,22 @@ public class TargetScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (gameManager.isGameActive)
+        {
         Destroy(gameObject);
         gameManager.UpdateScore(pointValue);
         Instantiate(explosionParticles,transform.position,explosionParticles.transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if(!gameObject.CompareTag("Bad"))
+        {
+            gameManager.GameOver();
+            Debug.Log("Game Over");
+        }        
     }
 
     Vector3 Randomforce()

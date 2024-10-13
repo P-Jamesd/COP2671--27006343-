@@ -370,11 +370,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e80414c2cfb5b445aaa45e43db330b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  gameOverText: {fileID: 0}
   targets:
   - {fileID: 5572957771672497337, guid: 4b48929f63428ea48986397397c7df60, type: 3}
   - {fileID: 706581632453002197, guid: 21283ccde7e373b49954820565079425, type: 3}
   - {fileID: 6769375086592995218, guid: 1827a99c48e368842ad092b593a14098, type: 3}
   - {fileID: 5669849685049989222, guid: 608132f3ab2a2b645b65003ad8a0c476, type: 3}
+  isGameActive: 0
+  restartbutton: {fileID: 0}
 --- !u!4 &543903208
 Transform:
   m_ObjectHideFlags: 0
@@ -424,7 +428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 193, y: -74}
+  m_AnchoredPosition: {x: 352, y: -57.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878535142
