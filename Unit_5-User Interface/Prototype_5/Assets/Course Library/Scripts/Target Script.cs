@@ -49,7 +49,6 @@ public class TargetScript : MonoBehaviour
         if(!gameObject.CompareTag("Bad"))
         {
             gameManager.GameOver();
-            Debug.Log("Game Over");
         }        
     }
 
