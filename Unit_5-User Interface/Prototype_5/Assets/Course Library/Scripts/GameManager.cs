@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         restartbutton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
-
     }
         public void RestartGame()
     {
