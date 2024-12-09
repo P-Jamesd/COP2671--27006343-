@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public GameObject gameScreen;
     public Slider marbleSlider;
-    public TextMeshProUGUI marbleCount;
+    public TextMeshProUGUI marbleText;
 
     //End Game Variables
     public GameObject endScreen;
@@ -40,19 +41,19 @@ public class GameManager : MonoBehaviour
     private float zTopSpawn = 18.0f;
     private float zBottomSpawn = -29.0f;
     public GameObject target;
-    private  int targetCount;
+    public  int targetCount;
     void Update()
     {
-       targetCount = FindObjectsOfType<TargetControl>().Length;
-       if(targetCount < 1 && isGameActive)
-       {
-        EndGame();
-       }
-       Debug.Log(time);
+        marbleText.text = "Marbles : " + marbleSlider.value;
+        if(targetCount == 0 && isGameActive)
+        {
+            EndGame();
+        }
     }
     public void StartGame()
     {
         isGameActive = true;
+        targetCount = (int)marbleSlider.value;
         startScreen.gameObject.SetActive(false);
         gameScreen.gameObject.SetActive(true);
         StartCoroutine(StartTime());
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
         pauseScreen.gameObject.SetActive(true);
         gameScreen.gameObject.SetActive(false);
     }
-    public void Unpause()
+    public void UnpauseGame()
     {
         Time.timeScale = 1;
         pauseScreen.gameObject.SetActive(false);

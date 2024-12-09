@@ -18,7 +18,7 @@ public class TargetControl : MonoBehaviour
         if (gameObject.transform.position.y < 0)
         {
             Destroy(gameObject);
-            gameManager.EndGame();
+            gameManager.targetCount -= 1;
         }  
     }
 }
