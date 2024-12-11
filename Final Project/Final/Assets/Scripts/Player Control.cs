@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
+    public ParticleSystem impactParticle;
     private Rigidbody playerRB;
     private Vector3 cameraDirection;
     private float startTime;
     private float maxHoldTime = 2.0f; 
-    public float maxPower = 10000;
+    public float maxPower = 5000;
     public float power; 
     private GameManager gameManager;
+    public AudioSource collisionSound;
     
     // Start is called before the first frame update
    
@@ -33,6 +37,8 @@ public class PlayerControl : MonoBehaviour
         {
             RespawnPlayer();
         }
+        // this controls the powerbar when you are holding the spacebar down. 
+
     }
     public void MovePlayer()
     {      
@@ -52,18 +58,18 @@ public class PlayerControl : MonoBehaviour
         power = holdTimeNormalized * maxPower;
         return power;
     }
-    private void OnCollision(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Target"))
         {
-            Rigidbody targetRigidBody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
-            targetRigidBody.AddForce(awayFromPlayer * (power/2));
+            collisionSound.Play();
+            impactParticle.Play();
         }
     }
-        private void RespawnPlayer()
+    private void RespawnPlayer()
     {
         gameManager.timeValue += 10.0f;
         gameObject.transform.position = new Vector3(0,10,0);
     }
+
 }

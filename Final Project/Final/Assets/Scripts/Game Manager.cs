@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     private float zBottomSpawn = -29.0f;
     public GameObject target;
     public  int targetCount;
+
+    //Audio Variable
+    public AudioSource buttonSound;
     void Update()
     {
         marbleText.text = "Marbles : " + marbleSlider.value;
@@ -111,5 +114,9 @@ public class GameManager : MonoBehaviour
         float spawnPosZ = UnityEngine.Random.Range(zBottomSpawn, zTopSpawn);
         Vector3 radomPos = new Vector3(spawnPosX,10,spawnPosZ);
         return radomPos;
+    }
+    public void ButtonSound()
+    {
+        buttonSound.Play();
     }
 }
